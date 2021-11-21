@@ -1,0 +1,974 @@
+│   10:   version = "3.5.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now deprecated and will
+│ be removed in a future version of Terraform. To silence this warning, move the provider version constraint into the required_providers block.
+╵
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+google_compute_instance.vm_instance: Destroying... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance]
+google_compute_instance.vm_instance: Still destroying... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/z...entral1-c/instances/terraform-instance, 10s elapsed]
+google_compute_instance.vm_instance: Still destroying... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/z...entral1-c/instances/terraform-instance, 20s elapsed]
+google_compute_instance.vm_instance: Destruction complete after 27s
+google_compute_network.vpc_network: Destroying... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/global/networks/terraform-network]
+google_compute_network.vpc_network: Still destroying... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/global/networks/terraform-network, 10s elapsed]
+google_compute_network.vpc_network: Still destroying... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/global/networks/terraform-network, 20s elapsed]
+google_compute_network.vpc_network: Still destroying... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/global/networks/terraform-network, 30s elapsed]
+google_compute_network.vpc_network: Still destroying... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/global/networks/terraform-network, 40s elapsed]
+google_compute_network.vpc_network: Destruction complete after 46s
+
+Destroy complete! Resources: 2 destroyed.
+student_00_9c0053bd4eac@cloudshell:~ (qwiklabs-gcp-02-fce74eb6bfa6)$ terraform apply
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # google_compute_instance.vm_instance will be created
+  + resource "google_compute_instance" "vm_instance" {
+      + can_ip_forward       = false
+      + cpu_platform         = (known after apply)
+      + deletion_protection  = false
+      + guest_accelerator    = (known after apply)
+      + id                   = (known after apply)
+      + instance_id          = (known after apply)
+      + label_fingerprint    = (known after apply)
+      + machine_type         = "f1-micro"
+      + metadata_fingerprint = (known after apply)
+      + min_cpu_platform     = (known after apply)
+      + name                 = "terraform-instance"
+      + project              = (known after apply)
+      + self_link            = (known after apply)
+      + tags                 = [
+          + "dev",
+          + "web",
+        ]
+      + tags_fingerprint     = (known after apply)
+      + zone                 = (known after apply)
+
+      + boot_disk {
+          + auto_delete                = true
+          + device_name                = (known after apply)
+          + disk_encryption_key_sha256 = (known after apply)
+          + kms_key_self_link          = (known after apply)
+          + mode                       = "READ_WRITE"
+          + source                     = (known after apply)
+
+          + initialize_params {
+              + image  = "cos-cloud/cos-stable"
+              + labels = (known after apply)
+              + size   = (known after apply)
+              + type   = (known after apply)
+            }
+        }
+
+      + network_interface {
+          + name               = (known after apply)
+          + network            = "terraform-network"
+          + network_ip         = (known after apply)
+          + subnetwork         = (known after apply)
+          + subnetwork_project = (known after apply)
+
+          + access_config {
+              + nat_ip       = (known after apply)
+              + network_tier = (known after apply)
+            }
+        }
+
+      + scheduling {
+          + automatic_restart   = (known after apply)
+          + on_host_maintenance = (known after apply)
+          + preemptible         = (known after apply)
+
+          + node_affinities {
+              + key      = (known after apply)
+              + operator = (known after apply)
+              + values   = (known after apply)
+            }
+        }
+    }
+
+  # google_compute_network.vpc_network will be created
+  + resource "google_compute_network" "vpc_network" {
+      + auto_create_subnetworks         = true
+      + delete_default_routes_on_create = false
+      + gateway_ipv4                    = (known after apply)
+      + id                              = (known after apply)
+      + ipv4_range                      = (known after apply)
+      + name                            = "terraform-network"
+      + project                         = (known after apply)
+      + routing_mode                    = (known after apply)
+      + self_link                       = (known after apply)
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on main.tf line 10, in provider "google":
+│   10:   version = "3.5.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now deprecated and will
+│ be removed in a future version of Terraform. To silence this warning, move the provider version constraint into the required_providers block.
+╵
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+google_compute_network.vpc_network: Creating...
+google_compute_network.vpc_network: Still creating... [10s elapsed]
+google_compute_network.vpc_network: Still creating... [20s elapsed]
+google_compute_network.vpc_network: Still creating... [30s elapsed]
+google_compute_network.vpc_network: Creation complete after 37s [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/global/networks/terraform-network]
+google_compute_instance.vm_instance: Creating...
+google_compute_instance.vm_instance: Still creating... [10s elapsed]
+google_compute_instance.vm_instance: Creation complete after 18s [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance]
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+student_00_9c0053bd4eac@cloudshell:~ (qwiklabs-gcp-02-fce74eb6bfa6)$ terraform plan
+google_compute_network.vpc_network: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/global/networks/terraform-network]
+google_compute_instance.vm_instance: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance]
+
+Note: Objects have changed outside of Terraform
+
+Terraform detected the following changes made outside of Terraform since the last "terraform apply":
+
+  # google_compute_instance.vm_instance has been changed
+  ~ resource "google_compute_instance" "vm_instance" {
+        id                   = "projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance"
+      + labels               = {}
+      + metadata             = {}
+        name                 = "terraform-instance"
+        tags                 = [
+            "dev",
+            "web",
+        ]
+        # (13 unchanged attributes hidden)
+
+
+
+
+        # (4 unchanged blocks hidden)
+    }
+
+Unless you have made equivalent changes to your configuration, or ignored the relevant attributes using ignore_changes, the following plan may
+include actions to undo or respond to these changes.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # google_compute_address.vm_static_ip will be created
+  + resource "google_compute_address" "vm_static_ip" {
+      + address            = (known after apply)
+      + address_type       = "EXTERNAL"
+      + creation_timestamp = (known after apply)
+      + id                 = (known after apply)
+      + name               = "terraform-static-ip"
+      + network_tier       = (known after apply)
+      + project            = (known after apply)
+      + purpose            = (known after apply)
+      + region             = (known after apply)
+      + self_link          = (known after apply)
+      + subnetwork         = (known after apply)
+      + users              = (known after apply)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on main.tf line 10, in provider "google":
+│   10:   version = "3.5.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now deprecated and will
+│ be removed in a future version of Terraform. To silence this warning, move the provider version constraint into the required_providers block.
+╵
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if you run "terraform apply"
+now.
+student_00_9c0053bd4eac@cloudshell:~ (qwiklabs-gcp-02-fce74eb6bfa6)$ terraform plan -out static_ip
+google_compute_network.vpc_network: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/global/networks/terraform-network]
+google_compute_instance.vm_instance: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance]
+
+Note: Objects have changed outside of Terraform
+
+Terraform detected the following changes made outside of Terraform since the last "terraform apply":
+
+  # google_compute_instance.vm_instance has been changed
+  ~ resource "google_compute_instance" "vm_instance" {
+        id                   = "projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance"
+      + labels               = {}
+      + metadata             = {}
+        name                 = "terraform-instance"
+        tags                 = [
+            "dev",
+            "web",
+        ]
+        # (13 unchanged attributes hidden)
+
+
+
+
+        # (4 unchanged blocks hidden)
+    }
+
+Unless you have made equivalent changes to your configuration, or ignored the relevant attributes using ignore_changes, the following plan may
+include actions to undo or respond to these changes.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+  ~ update in-place
+
+Terraform will perform the following actions:
+
+  # google_compute_address.vm_static_ip will be created
+  + resource "google_compute_address" "vm_static_ip" {
+      + address            = (known after apply)
+      + address_type       = "EXTERNAL"
+      + creation_timestamp = (known after apply)
+      + id                 = (known after apply)
+      + name               = "terraform-static-ip"
+      + network_tier       = (known after apply)
+      + project            = (known after apply)
+      + purpose            = (known after apply)
+      + region             = (known after apply)
+      + self_link          = (known after apply)
+      + subnetwork         = (known after apply)
+      + users              = (known after apply)
+    }
+
+  # google_compute_instance.vm_instance will be updated in-place
+  ~ resource "google_compute_instance" "vm_instance" {
+        id                   = "projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance"
+        name                 = "terraform-instance"
+        tags                 = [
+            "dev",
+            "web",
+        ]
+        # (15 unchanged attributes hidden)
+
+
+      ~ network_interface {
+            name               = "nic0"
+            # (4 unchanged attributes hidden)
+
+          ~ access_config {
+              ~ nat_ip       = "35.184.69.116" -> (known after apply)
+                # (1 unchanged attribute hidden)
+            }
+        }
+
+
+        # (3 unchanged blocks hidden)
+    }
+
+Plan: 1 to add, 1 to change, 0 to destroy.
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on main.tf line 10, in provider "google":
+│   10:   version = "3.5.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now deprecated and will
+│ be removed in a future version of Terraform. To silence this warning, move the provider version constraint into the required_providers block.
+╵
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Saved the plan to: static_ip
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "static_ip"
+student_00_9c0053bd4eac@cloudshell:~ (qwiklabs-gcp-02-fce74eb6bfa6)$ terraform apply "static_ip"
+google_compute_address.vm_static_ip: Creating...
+google_compute_address.vm_static_ip: Creation complete after 4s [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/regions/us-central1/addresses/terraform-static-ip]
+google_compute_instance.vm_instance: Modifying... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance]
+google_compute_instance.vm_instance: Still modifying... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/z...entral1-c/instances/terraform-instance, 10s elapsed]
+google_compute_instance.vm_instance: Still modifying... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/z...entral1-c/instances/terraform-instance, 20s elapsed]
+google_compute_instance.vm_instance: Still modifying... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/z...entral1-c/instances/terraform-instance, 30s elapsed]
+google_compute_instance.vm_instance: Modifications complete after 32s [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance]
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on main.tf line 10, in provider "google":
+│   10:   version = "3.5.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now deprecated and will
+│ be removed in a future version of Terraform. To silence this warning, move the provider version constraint into the required_providers block.
+╵
+
+Apply complete! Resources: 1 added, 1 changed, 0 destroyed.
+student_00_9c0053bd4eac@cloudshell:~ (qwiklabs-gcp-02-fce74eb6bfa6)$ terraform plan
+google_compute_network.vpc_network: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/global/networks/terraform-network]
+google_compute_address.vm_static_ip: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/regions/us-central1/addresses/terraform-static-ip]
+google_compute_instance.vm_instance: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance]
+
+Note: Objects have changed outside of Terraform
+
+Terraform detected the following changes made outside of Terraform since the last "terraform apply":
+
+  # google_compute_address.vm_static_ip has been changed
+  ~ resource "google_compute_address" "vm_static_ip" {
+        id                 = "projects/qwiklabs-gcp-02-fce74eb6bfa6/regions/us-central1/addresses/terraform-static-ip"
+        name               = "terraform-static-ip"
+      ~ users              = [
+          + "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance",
+        ]
+        # (7 unchanged attributes hidden)
+    }
+
+Unless you have made equivalent changes to your configuration, or ignored the relevant attributes using ignore_changes, the following plan may
+include actions to undo or respond to these changes.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # google_compute_instance.another_instance will be created
+  + resource "google_compute_instance" "another_instance" {
+      + can_ip_forward       = false
+      + cpu_platform         = (known after apply)
+      + deletion_protection  = false
+      + guest_accelerator    = (known after apply)
+      + id                   = (known after apply)
+      + instance_id          = (known after apply)
+      + label_fingerprint    = (known after apply)
+      + machine_type         = "f1-micro"
+      + metadata_fingerprint = (known after apply)
+      + min_cpu_platform     = (known after apply)
+      + name                 = "terraform-instance-2"
+      + project              = (known after apply)
+      + self_link            = (known after apply)
+      + tags_fingerprint     = (known after apply)
+      + zone                 = (known after apply)
+
+      + boot_disk {
+          + auto_delete                = true
+          + device_name                = (known after apply)
+          + disk_encryption_key_sha256 = (known after apply)
+          + kms_key_self_link          = (known after apply)
+          + mode                       = "READ_WRITE"
+          + source                     = (known after apply)
+
+          + initialize_params {
+              + image  = "cos-cloud/cos-stable"
+              + labels = (known after apply)
+              + size   = (known after apply)
+              + type   = (known after apply)
+            }
+        }
+
+      + network_interface {
+          + name               = (known after apply)
+          + network            = "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-fce74eb6bfa6/global/networks/terraform-network"
+          + network_ip         = (known after apply)
+          + subnetwork         = (known after apply)
+          + subnetwork_project = (known after apply)
+
+          + access_config {
+              + nat_ip       = (known after apply)
+              + network_tier = (known after apply)
+            }
+        }
+
+      + scheduling {
+          + automatic_restart   = (known after apply)
+          + on_host_maintenance = (known after apply)
+          + preemptible         = (known after apply)
+
+          + node_affinities {
+              + key      = (known after apply)
+              + operator = (known after apply)
+              + values   = (known after apply)
+            }
+        }
+    }
+
+  # google_storage_bucket.example_bucket will be created
+  + resource "google_storage_bucket" "example_bucket" {
+      + bucket_policy_only = (known after apply)
+      + force_destroy      = false
+      + id                 = (known after apply)
+      + location           = "US"
+      + name               = "itsjustrizzy-21/11/2021"
+      + project            = (known after apply)
+      + self_link          = (known after apply)
+      + storage_class      = "STANDARD"
+      + url                = (known after apply)
+
+      + website {
+          + main_page_suffix = "index.html"
+          + not_found_page   = "404.html"
+        }
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on main.tf line 11, in provider "google":
+│   11:   version = "3.5.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now deprecated and will
+│ be removed in a future version of Terraform. To silence this warning, move the provider version constraint into the required_providers block.
+╵
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if you run "terraform apply"
+now.
+student_00_9c0053bd4eac@cloudshell:~ (qwiklabs-gcp-02-fce74eb6bfa6)$ terraform apply
+google_compute_address.vm_static_ip: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/regions/us-central1/addresses/terraform-static-ip]
+google_compute_network.vpc_network: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/global/networks/terraform-network]
+google_compute_instance.vm_instance: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance]
+
+Note: Objects have changed outside of Terraform
+
+Terraform detected the following changes made outside of Terraform since the last "terraform apply":
+
+  # google_compute_address.vm_static_ip has been changed
+  ~ resource "google_compute_address" "vm_static_ip" {
+        id                 = "projects/qwiklabs-gcp-02-fce74eb6bfa6/regions/us-central1/addresses/terraform-static-ip"
+        name               = "terraform-static-ip"
+      ~ users              = [
+          + "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance",
+        ]
+        # (7 unchanged attributes hidden)
+    }
+
+Unless you have made equivalent changes to your configuration, or ignored the relevant attributes using ignore_changes, the following plan may
+include actions to undo or respond to these changes.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # google_compute_instance.another_instance will be created
+  + resource "google_compute_instance" "another_instance" {
+      + can_ip_forward       = false
+      + cpu_platform         = (known after apply)
+      + deletion_protection  = false
+      + guest_accelerator    = (known after apply)
+      + id                   = (known after apply)
+      + instance_id          = (known after apply)
+      + label_fingerprint    = (known after apply)
+      + machine_type         = "f1-micro"
+      + metadata_fingerprint = (known after apply)
+      + min_cpu_platform     = (known after apply)
+      + name                 = "terraform-instance-2"
+      + project              = (known after apply)
+      + self_link            = (known after apply)
+      + tags_fingerprint     = (known after apply)
+      + zone                 = (known after apply)
+
+      + boot_disk {
+          + auto_delete                = true
+          + device_name                = (known after apply)
+          + disk_encryption_key_sha256 = (known after apply)
+          + kms_key_self_link          = (known after apply)
+          + mode                       = "READ_WRITE"
+          + source                     = (known after apply)
+
+          + initialize_params {
+              + image  = "cos-cloud/cos-stable"
+              + labels = (known after apply)
+              + size   = (known after apply)
+              + type   = (known after apply)
+            }
+        }
+
+      + network_interface {
+          + name               = (known after apply)
+          + network            = "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-fce74eb6bfa6/global/networks/terraform-network"
+          + network_ip         = (known after apply)
+          + subnetwork         = (known after apply)
+          + subnetwork_project = (known after apply)
+
+          + access_config {
+              + nat_ip       = (known after apply)
+              + network_tier = (known after apply)
+            }
+        }
+
+      + scheduling {
+          + automatic_restart   = (known after apply)
+          + on_host_maintenance = (known after apply)
+          + preemptible         = (known after apply)
+
+          + node_affinities {
+              + key      = (known after apply)
+              + operator = (known after apply)
+              + values   = (known after apply)
+            }
+        }
+    }
+
+  # google_storage_bucket.example_bucket will be created
+  + resource "google_storage_bucket" "example_bucket" {
+      + bucket_policy_only = (known after apply)
+      + force_destroy      = false
+      + id                 = (known after apply)
+      + location           = "US"
+      + name               = "itsjustrizzy-21/11/2021"
+      + project            = (known after apply)
+      + self_link          = (known after apply)
+      + storage_class      = "STANDARD"
+      + url                = (known after apply)
+
+      + website {
+          + main_page_suffix = "index.html"
+          + not_found_page   = "404.html"
+        }
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on main.tf line 11, in provider "google":
+│   11:   version = "3.5.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now deprecated and will
+│ be removed in a future version of Terraform. To silence this warning, move the provider version constraint into the required_providers block.
+╵
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+google_storage_bucket.example_bucket: Creating...
+╷
+│ Error: googleapi: Error 400: Invalid bucket name: 'itsjustrizzy-21/11/2021', invalid
+│ 
+│   with google_storage_bucket.example_bucket,
+│   on main.tf line 66, in resource "google_storage_bucket" "example_bucket":
+│   66: resource "google_storage_bucket" "example_bucket" {
+│ 
+╵
+student_00_9c0053bd4eac@cloudshell:~ (qwiklabs-gcp-02-fce74eb6bfa6)$ terraform apply
+google_compute_address.vm_static_ip: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/regions/us-central1/addresses/terraform-static-ip]
+google_compute_network.vpc_network: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/global/networks/terraform-network]
+google_compute_instance.vm_instance: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # google_compute_instance.another_instance will be created
+  + resource "google_compute_instance" "another_instance" {
+      + can_ip_forward       = false
+      + cpu_platform         = (known after apply)
+      + deletion_protection  = false
+      + guest_accelerator    = (known after apply)
+      + id                   = (known after apply)
+      + instance_id          = (known after apply)
+      + label_fingerprint    = (known after apply)
+      + machine_type         = "f1-micro"
+      + metadata_fingerprint = (known after apply)
+      + min_cpu_platform     = (known after apply)
+      + name                 = "terraform-instance-2"
+      + project              = (known after apply)
+      + self_link            = (known after apply)
+      + tags_fingerprint     = (known after apply)
+      + zone                 = (known after apply)
+
+      + boot_disk {
+          + auto_delete                = true
+          + device_name                = (known after apply)
+          + disk_encryption_key_sha256 = (known after apply)
+          + kms_key_self_link          = (known after apply)
+          + mode                       = "READ_WRITE"
+          + source                     = (known after apply)
+
+          + initialize_params {
+              + image  = "cos-cloud/cos-stable"
+              + labels = (known after apply)
+              + size   = (known after apply)
+              + type   = (known after apply)
+            }
+        }
+
+      + network_interface {
+          + name               = (known after apply)
+          + network            = "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-fce74eb6bfa6/global/networks/terraform-network"
+          + network_ip         = (known after apply)
+          + subnetwork         = (known after apply)
+          + subnetwork_project = (known after apply)
+
+          + access_config {
+              + nat_ip       = (known after apply)
+              + network_tier = (known after apply)
+            }
+        }
+
+      + scheduling {
+          + automatic_restart   = (known after apply)
+          + on_host_maintenance = (known after apply)
+          + preemptible         = (known after apply)
+
+          + node_affinities {
+              + key      = (known after apply)
+              + operator = (known after apply)
+              + values   = (known after apply)
+            }
+        }
+    }
+
+  # google_storage_bucket.example_bucket will be created
+  + resource "google_storage_bucket" "example_bucket" {
+      + bucket_policy_only = (known after apply)
+      + force_destroy      = false
+      + id                 = (known after apply)
+      + location           = "US"
+      + name               = "itsjustrizzy-21-11-2021"
+      + project            = (known after apply)
+      + self_link          = (known after apply)
+      + storage_class      = "STANDARD"
+      + url                = (known after apply)
+
+      + website {
+          + main_page_suffix = "index.html"
+          + not_found_page   = "404.html"
+        }
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on main.tf line 11, in provider "google":
+│   11:   version = "3.5.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now deprecated and will
+│ be removed in a future version of Terraform. To silence this warning, move the provider version constraint into the required_providers block.
+╵
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+google_storage_bucket.example_bucket: Creating...
+google_storage_bucket.example_bucket: Creation complete after 2s [id=itsjustrizzy-21-11-2021]
+google_compute_instance.another_instance: Creating...
+google_compute_instance.another_instance: Still creating... [10s elapsed]
+google_compute_instance.another_instance: Creation complete after 18s [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance-2]
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+student_00_9c0053bd4eac@cloudshell:~ (qwiklabs-gcp-02-fce74eb6bfa6)$ terraform apply
+google_compute_instance.another_instance: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance-2]
+google_compute_address.vm_static_ip: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/regions/us-central1/addresses/terraform-static-ip]
+google_compute_network.vpc_network: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/global/networks/terraform-network]
+google_storage_bucket.example_bucket: Refreshing state... [id=itsjustrizzy-21-11-2021]
+google_compute_instance.vm_instance: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance]
+
+Note: Objects have changed outside of Terraform
+
+Terraform detected the following changes made outside of Terraform since the last "terraform apply":
+
+  # google_storage_bucket.example_bucket has been changed
+  ~ resource "google_storage_bucket" "example_bucket" {
+        id                 = "itsjustrizzy-21-11-2021"
+      + labels             = {}
+        name               = "itsjustrizzy-21-11-2021"
+        # (8 unchanged attributes hidden)
+
+        # (1 unchanged block hidden)
+    }
+  # google_compute_instance.another_instance has been changed
+  ~ resource "google_compute_instance" "another_instance" {
+        id                   = "projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance-2"
+      + labels               = {}
+      + metadata             = {}
+        name                 = "terraform-instance-2"
+      + tags                 = []
+        # (13 unchanged attributes hidden)
+
+
+
+
+        # (4 unchanged blocks hidden)
+    }
+
+Unless you have made equivalent changes to your configuration, or ignored the relevant attributes using ignore_changes, the following plan may
+include actions to undo or respond to these changes.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # google_compute_instance.another_instance will be destroyed
+  - resource "google_compute_instance" "another_instance" {
+      - can_ip_forward       = false -> null
+      - cpu_platform         = "Intel Haswell" -> null
+      - deletion_protection  = false -> null
+      - enable_display       = false -> null
+      - guest_accelerator    = [] -> null
+      - id                   = "projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance-2" -> null
+      - instance_id          = "6179327725803083107" -> null
+      - label_fingerprint    = "42WmSpB8rSM=" -> null
+      - labels               = {} -> null
+      - machine_type         = "f1-micro" -> null
+      - metadata             = {} -> null
+      - metadata_fingerprint = "fvD89tK1YJk=" -> null
+      - name                 = "terraform-instance-2" -> null
+      - project              = "qwiklabs-gcp-02-fce74eb6bfa6" -> null
+      - self_link            = "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance-2" -> null
+      - tags                 = [] -> null
+      - tags_fingerprint     = "42WmSpB8rSM=" -> null
+      - zone                 = "us-central1-c" -> null
+
+      - boot_disk {
+          - auto_delete = true -> null
+          - device_name = "persistent-disk-0" -> null
+          - mode        = "READ_WRITE" -> null
+          - source      = "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/disks/terraform-instance-2" -> null
+
+          - initialize_params {
+              - image  = "https://www.googleapis.com/compute/v1/projects/cos-cloud/global/images/cos-stable-93-16623-39-21" -> null
+              - labels = {} -> null
+              - size   = 10 -> null
+              - type   = "pd-standard" -> null
+            }
+        }
+
+      - network_interface {
+          - name               = "nic0" -> null
+          - network            = "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-fce74eb6bfa6/global/networks/terraform-network" -> null
+          - network_ip         = "10.128.0.3" -> null
+          - subnetwork         = "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-fce74eb6bfa6/regions/us-central1/subnetworks/terraform-network" -> null
+          - subnetwork_project = "qwiklabs-gcp-02-fce74eb6bfa6" -> null
+
+          - access_config {
+              - nat_ip       = "35.184.69.116" -> null
+              - network_tier = "PREMIUM" -> null
+            }
+        }
+
+      - scheduling {
+          - automatic_restart   = true -> null
+          - on_host_maintenance = "MIGRATE" -> null
+          - preemptible         = false -> null
+        }
+
+      - shielded_instance_config {
+          - enable_integrity_monitoring = true -> null
+          - enable_secure_boot          = false -> null
+          - enable_vtpm                 = true -> null
+        }
+    }
+
+  # google_storage_bucket.example_bucket will be destroyed
+  - resource "google_storage_bucket" "example_bucket" {
+      - bucket_policy_only = false -> null
+      - force_destroy      = false -> null
+      - id                 = "itsjustrizzy-21-11-2021" -> null
+      - labels             = {} -> null
+      - location           = "US" -> null
+      - name               = "itsjustrizzy-21-11-2021" -> null
+      - project            = "qwiklabs-gcp-02-fce74eb6bfa6" -> null
+      - requester_pays     = false -> null
+      - self_link          = "https://www.googleapis.com/storage/v1/b/itsjustrizzy-21-11-2021" -> null
+      - storage_class      = "STANDARD" -> null
+      - url                = "gs://itsjustrizzy-21-11-2021" -> null
+
+      - website {
+          - main_page_suffix = "index.html" -> null
+          - not_found_page   = "404.html" -> null
+        }
+    }
+
+Plan: 0 to add, 0 to change, 2 to destroy.
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on main.tf line 11, in provider "google":
+│   11:   version = "3.5.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now deprecated and will
+│ be removed in a future version of Terraform. To silence this warning, move the provider version constraint into the required_providers block.
+╵
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+google_compute_instance.another_instance: Destroying... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance-2]
+google_compute_instance.another_instance: Still destroying... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/z...tral1-c/instances/terraform-instance-2, 10s elapsed]
+google_compute_instance.another_instance: Still destroying... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/z...tral1-c/instances/terraform-instance-2, 20s elapsed]
+google_compute_instance.another_instance: Destruction complete after 26s
+google_storage_bucket.example_bucket: Destroying... [id=itsjustrizzy-21-11-2021]
+google_storage_bucket.example_bucket: Destruction complete after 1s
+
+Apply complete! Resources: 0 added, 0 changed, 2 destroyed.
+student_00_9c0053bd4eac@cloudshell:~ (qwiklabs-gcp-02-fce74eb6bfa6)$ terraform apply
+google_compute_address.vm_static_ip: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/regions/us-central1/addresses/terraform-static-ip]
+google_compute_network.vpc_network: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/global/networks/terraform-network]
+google_compute_instance.vm_instance: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance]
+
+No changes. Your infrastructure matches the configuration.
+
+Terraform has compared your real infrastructure against your configuration and found no differences, so no changes are needed.
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on main.tf line 11, in provider "google":
+│   11:   version = "3.5.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now deprecated and will
+│ be removed in a future version of Terraform. To silence this warning, move the provider version constraint into the required_providers block.
+╵
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+student_00_9c0053bd4eac@cloudshell:~ (qwiklabs-gcp-02-fce74eb6bfa6)$ terraform taint google_compute_instance.vm_instance
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on /home/student_00_9c0053bd4eac/main.tf line 11, in provider "google":
+│   11:   version = "3.5.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now deprecated and will
+│ be removed in a future version of Terraform. To silence this warning, move the provider version constraint into the required_providers block.
+╵
+
+Resource instance google_compute_instance.vm_instance has been marked as tainted.
+student_00_9c0053bd4eac@cloudshell:~ (qwiklabs-gcp-02-fce74eb6bfa6)$ terraform apply
+google_compute_address.vm_static_ip: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/regions/us-central1/addresses/terraform-static-ip]
+google_compute_network.vpc_network: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/global/networks/terraform-network]
+google_compute_instance.vm_instance: Refreshing state... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+-/+ destroy and then create replacement
+
+Terraform will perform the following actions:
+
+  # google_compute_instance.vm_instance is tainted, so must be replaced
+-/+ resource "google_compute_instance" "vm_instance" {
+      ~ cpu_platform         = "Intel Haswell" -> (known after apply)
+      - enable_display       = false -> null
+      ~ guest_accelerator    = [] -> (known after apply)
+      ~ id                   = "projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance" -> (known after apply)
+      ~ instance_id          = "8556007102348728624" -> (known after apply)
+      ~ label_fingerprint    = "42WmSpB8rSM=" -> (known after apply)
+      - labels               = {} -> null
+      - metadata             = {} -> null
+      ~ metadata_fingerprint = "fvD89tK1YJk=" -> (known after apply)
+      + min_cpu_platform     = (known after apply)
+        name                 = "terraform-instance"
+      ~ project              = "qwiklabs-gcp-02-fce74eb6bfa6" -> (known after apply)
+      ~ self_link            = "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance" -> (known after apply)
+        tags                 = [
+            "dev",
+            "web",
+        ]
+      ~ tags_fingerprint     = "XaeQnaHMn9Y=" -> (known after apply)
+      ~ zone                 = "us-central1-c" -> (known after apply)
+        # (3 unchanged attributes hidden)
+
+      ~ boot_disk {
+          ~ device_name                = "persistent-disk-0" -> (known after apply)
+          + disk_encryption_key_sha256 = (known after apply)
+          + kms_key_self_link          = (known after apply)
+          ~ source                     = "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/disks/terraform-instance" -> (known after apply)
+            # (2 unchanged attributes hidden)
+
+          ~ initialize_params {
+              ~ image  = "https://www.googleapis.com/compute/v1/projects/cos-cloud/global/images/cos-stable-93-16623-39-21" -> "cos-cloud/cos-stable"
+              ~ labels = {} -> (known after apply)
+              ~ size   = 10 -> (known after apply)
+              ~ type   = "pd-standard" -> (known after apply)
+            }
+        }
+
+      ~ network_interface {
+          ~ name               = "nic0" -> (known after apply)
+          ~ network_ip         = "10.128.0.2" -> (known after apply)
+          ~ subnetwork         = "https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-fce74eb6bfa6/regions/us-central1/subnetworks/terraform-network" -> (known after apply)
+          ~ subnetwork_project = "qwiklabs-gcp-02-fce74eb6bfa6" -> (known after apply)
+            # (1 unchanged attribute hidden)
+
+          ~ access_config {
+              ~ network_tier = "PREMIUM" -> (known after apply)
+                # (1 unchanged attribute hidden)
+            }
+        }
+
+      ~ scheduling {
+          ~ automatic_restart   = true -> (known after apply)
+          ~ on_host_maintenance = "MIGRATE" -> (known after apply)
+          ~ preemptible         = false -> (known after apply)
+
+          + node_affinities {
+              + key      = (known after apply)
+              + operator = (known after apply)
+              + values   = (known after apply)
+            }
+        }
+
+      - shielded_instance_config {
+          - enable_integrity_monitoring = true -> null
+          - enable_secure_boot          = false -> null
+          - enable_vtpm                 = true -> null
+        }
+    }
+
+Plan: 1 to add, 0 to change, 1 to destroy.
+╷
+│ Warning: Version constraints inside provider configuration blocks are deprecated
+│ 
+│   on main.tf line 11, in provider "google":
+│   11:   version = "3.5.0"
+│ 
+│ Terraform 0.13 and earlier allowed provider version constraints inside the provider configuration block, but that is now deprecated and will
+│ be removed in a future version of Terraform. To silence this warning, move the provider version constraint into the required_providers block.
+╵
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+google_compute_instance.vm_instance: Destroying... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance]
+google_compute_instance.vm_instance: Still destroying... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/z...entral1-c/instances/terraform-instance, 10s elapsed]
+google_compute_instance.vm_instance: Still destroying... [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/z...entral1-c/instances/terraform-instance, 20s elapsed]
+google_compute_instance.vm_instance: Destruction complete after 27s
+google_compute_instance.vm_instance: Creating...
+google_compute_instance.vm_instance: Still creating... [10s elapsed]
+google_compute_instance.vm_instance: Provisioning with 'local-exec'...
+google_compute_instance.vm_instance (local-exec): Executing: ["/bin/sh" "-c" "echo terraform-instance:  34.133.110.33 >> ip_address.txt"]
+google_compute_instance.vm_instance: Creation complete after 18s [id=projects/qwiklabs-gcp-02-fce74eb6bfa6/zones/us-central1-c/instances/terraform-instance]
+
+Apply complete! Resources: 1 added, 0 changed, 1 destroyed.
+student_00_9c0053bd4eac@cloudshell:~ (qwiklabs-gcp-02-fce74eb6bfa6)$ 
